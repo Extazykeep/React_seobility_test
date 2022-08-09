@@ -1,0 +1,13 @@
+.base-button {
+    color: #fff;
+    background-color: #27b7f5;
+    border: none;
+    font-weight: bold;
+    font-size: 1.3em;
+    min-width: 350px;
+    cursor: pointer;
+    &__disabled {
+        cursor: not-allowed;
+        background-color: #cccccc;
+    }
+}
