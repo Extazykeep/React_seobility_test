@@ -7,8 +7,9 @@ export interface ValidationType {
 }
 
 export interface InputErrorType {
-    errorName: string;
-    message: string;
+    userMessage: string;
+    userEmail: string;
+    userNameAndLastname: string;
 }
 
 export interface FormDataType {
@@ -22,6 +23,11 @@ export interface InputsInfoType {
     type: string;
     placeholder: string;
     name: string;
+}
+
+export interface ResponseMessageType {
+    message: string;
+    status: string;
 }
 
 export const inputsInfo: InputsInfoType[] = [

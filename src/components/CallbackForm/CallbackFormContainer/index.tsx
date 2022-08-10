@@ -1,12 +1,14 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import CallbackForm from 'components/CallbackForm';
 import { initialData, inputsInfo } from 'consts';
 import { FormDataType } from 'types';
-import { useValidation } from 'hooks';
+import { useSendUserData, useValidation } from 'hooks';
+import { isFormValid } from 'utils';
 
 const CallbackFormContainer = () => {
     const [formData, setFormData] = useState<FormDataType>(initialData);
     const { validateData, error } = useValidation();
+    const { sendData, isLoading, responseStatus } = useSendUserData();
 
     const setUserInfo = useCallback(
         (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +27,12 @@ const CallbackFormContainer = () => {
 
     const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        if (!isFormValid(formData)) {
+            alert('Введите валидные данные');
+            return;
+        }
+        sendData(formData);
+        setFormData(initialData);
     };
 
     return (
@@ -34,6 +42,8 @@ const CallbackFormContainer = () => {
             inputError={error}
             onChange={setUserInfo}
             onFormSubmit={onFormSubmit}
+            notificationMessage={responseStatus}
+            isLoading={isLoading}
         />
     );
 };

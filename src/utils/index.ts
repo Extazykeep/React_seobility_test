@@ -6,6 +6,7 @@ import {
     TWO_WORDS_MESSAGE,
     WRONG_EMAIL_MESSAGE,
 } from 'consts';
+import { FormDataType } from 'types';
 
 const isLatin = (str: string) => /^[a-zA-Z\s]+$/g.test(str);
 
@@ -14,16 +15,14 @@ const isOnlyTwoWords = (str: string) => {
 };
 
 const isWordsValid = (str: string) => {
-    console.log(
-        str.split(' ').filter((word) => isValidString(word, 3, 30)).length === 2
-    );
     return (
         str.split(' ').filter((word) => isValidString(word, 3, 30)).length === 2
     );
 };
-const isNotLonger = (str: string, count: number) => str.length <= count;
+const isNotLonger = (str: string, count: number) => str.trim().length <= count;
 
-const isEnoughtChars = (str: string, count: number) => str.length >= count;
+const isEnoughtChars = (str: string, count: number) =>
+    str.trim().length >= count;
 
 const isValidString = (str: string, min: number, max: number) =>
     isEnoughtChars(str, min) && isNotLonger(str, max);
@@ -41,6 +40,28 @@ export const isValidMessage = (str: string) => {
 export const isValidNameAndLastname = (str: string) => {
     const cutStr = str.trim();
     return isLatin(cutStr) && isOnlyTwoWords(cutStr) && isWordsValid(cutStr);
+};
+export const isValidDate = (str: string) => {
+    return str.length > 1;
+};
+export const isValidPhone = (str: string) => {
+    return isNotLonger(str, 16) && isEnoughtChars(str, 7);
+};
+
+export const isFormValid = ({
+    userNameAndLastname,
+    userEmail,
+    userPhone,
+    userBirth,
+    userMessage,
+}: FormDataType) => {
+    return (
+        isValidNameAndLastname(userNameAndLastname) &&
+        isValidEmail(userEmail) &&
+        isValidMessage(userMessage) &&
+        isValidDate(userBirth) &&
+        isValidPhone(userPhone)
+    );
 };
 
 export const getMessage = (inputType: string, str: string) => {

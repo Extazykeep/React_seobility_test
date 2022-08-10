@@ -26,16 +26,7 @@ export default React.memo(function TextField({
                 placeholder={placeholder}
                 onChange={(event) => onChange(event)}
             />
-            <p
-                style={{
-                    color: 'red',
-                    textAlign: 'center',
-                    maxWidth: '60%',
-                    margin: 'auto',
-                }}
-            >
-                {errorMessage}
-            </p>
+            <p className="error-message">{errorMessage}</p>
         </>
     );
 });

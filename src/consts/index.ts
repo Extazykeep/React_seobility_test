@@ -29,8 +29,3 @@ export const initialData = {
     userBirth: '',
     userMessage: '',
 };
-
-export const initialEror = {
-    errorName: '',
-    message: '',
-};

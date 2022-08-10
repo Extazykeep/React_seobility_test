@@ -6,6 +6,8 @@
     button {
         border-radius: 5px;
         padding: 15px 5px;
+        width: 350px;
+        margin: auto;
     }
     input {
         border: 1px solid rgba(0, 0, 0, 0.3);
@@ -13,4 +15,20 @@
             outline-color: #27b7f5;
         }
     }
+    .error-message {
+        line-height: 0;
+        color: red;
+        text-align: center;
+        margin: 0;
+    }
+}
+.notification {
+    position: absolute;
+    bottom: 40px;
+    border: 2px solid grey;
+    padding: 20px;
+    min-width: 200px;
+    min-height: 30px;
+    border-radius: 15px;
+    text-align: center;
 }
